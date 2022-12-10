@@ -5,6 +5,9 @@ from src import db
 
 products = Blueprint('products', __name__)
 
+
+
+
 # Get all the products from the database
 @products.route('/products', methods=['GET'])
 def get_products():

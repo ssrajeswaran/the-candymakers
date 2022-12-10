@@ -10,7 +10,7 @@ Version 3.0
 + changed DATETIME to DATE for some colunmns
 Version 2.0
 + changed table type from MyISAM to InnoDB
-+ added foreign keys for all tables 
++ added foreign keys for all tables
 *********************************************************************
 */
 
@@ -27,7 +27,7 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`classicmodels` /*!40100 DEFAULT CHARACT
 
 USE `classicmodels`;
 
-grant all privileges on classicmodels.* to 'webapp2'@'%';
+grant all privileges on classicmodels.* to 'webapp'@'%';
 flush privileges;
 
 /*Table structure for table `customers` */
@@ -55,7 +55,7 @@ CREATE TABLE `customers` (
 
 /*Data for the table `customers` */
 
-insert  into `customers`(`customerNumber`,`customerName`,`contactLastName`,`contactFirstName`,`phone`,`addressLine1`,`addressLine2`,`city`,`state`,`postalCode`,`country`,`salesRepEmployeeNumber`,`creditLimit`) values 
+insert  into `customers`(`customerNumber`,`customerName`,`contactLastName`,`contactFirstName`,`phone`,`addressLine1`,`addressLine2`,`city`,`state`,`postalCode`,`country`,`salesRepEmployeeNumber`,`creditLimit`) values
 
 (103,'Atelier graphique','Schmitt','Carine ','40.32.2555','54, rue Royale',NULL,'Nantes',NULL,'44000','France',1370,'21000.00'),
 
@@ -323,7 +323,7 @@ CREATE TABLE `employees` (
 
 /*Data for the table `employees` */
 
-insert  into `employees`(`employeeNumber`,`lastName`,`firstName`,`extension`,`email`,`officeCode`,`reportsTo`,`jobTitle`) values 
+insert  into `employees`(`employeeNumber`,`lastName`,`firstName`,`extension`,`email`,`officeCode`,`reportsTo`,`jobTitle`) values
 
 (1002,'Murphy','Diane','x5800','dmurphy@classicmodelcars.com','1',NULL,'President'),
 
@@ -390,7 +390,7 @@ CREATE TABLE `offices` (
 
 /*Data for the table `offices` */
 
-insert  into `offices`(`officeCode`,`city`,`phone`,`addressLine1`,`addressLine2`,`state`,`country`,`postalCode`,`territory`) values 
+insert  into `offices`(`officeCode`,`city`,`phone`,`addressLine1`,`addressLine2`,`state`,`country`,`postalCode`,`territory`) values
 
 ('1','San Francisco','+1 650 219 4782','100 Market Street','Suite 300','CA','USA','94080','NA'),
 
@@ -424,7 +424,7 @@ CREATE TABLE `orderdetails` (
 
 /*Data for the table `orderdetails` */
 
-insert  into `orderdetails`(`orderNumber`,`productCode`,`quantityOrdered`,`priceEach`,`orderLineNumber`) values 
+insert  into `orderdetails`(`orderNumber`,`productCode`,`quantityOrdered`,`priceEach`,`orderLineNumber`) values
 
 (10100,'S18_1749',30,'136.00',3),
 
@@ -6437,7 +6437,7 @@ CREATE TABLE `orders` (
 
 /*Data for the table `orders` */
 
-insert  into `orders`(`orderNumber`,`orderDate`,`requiredDate`,`shippedDate`,`status`,`comments`,`customerNumber`) values 
+insert  into `orders`(`orderNumber`,`orderDate`,`requiredDate`,`shippedDate`,`status`,`comments`,`customerNumber`) values
 
 (10100,'2003-01-06','2003-01-13','2003-01-10','Shipped',NULL,363),
 
@@ -7106,7 +7106,7 @@ CREATE TABLE `payments` (
 
 /*Data for the table `payments` */
 
-insert  into `payments`(`customerNumber`,`checkNumber`,`paymentDate`,`amount`) values 
+insert  into `payments`(`customerNumber`,`checkNumber`,`paymentDate`,`amount`) values
 
 (103,'HQ336336','2004-10-19','6066.78'),
 
@@ -7668,7 +7668,7 @@ CREATE TABLE `productlines` (
 
 /*Data for the table `productlines` */
 
-insert  into `productlines`(`productLine`,`textDescription`,`htmlDescription`,`image`) values 
+insert  into `productlines`(`productLine`,`textDescription`,`htmlDescription`,`image`) values
 
 ('Classic Cars','Attention car enthusiasts: Make your wildest car ownership dreams come true. Whether you are looking for classic muscle cars, dream sports cars or movie-inspired miniatures, you will find great choices in this category. These replicas feature superb attention to detail and craftsmanship and offer features such as working steering system, opening forward compartment, opening rear trunk with removable spare wheel, 4-wheel independent spring suspension, and so on. The models range in size from 1:10 to 1:24 scale and include numerous limited edition and several out-of-production vehicles. All models include a certificate of authenticity from their manufacturers and come fully assembled and ready for display in the home or office.',NULL,NULL),
 
@@ -7705,7 +7705,7 @@ CREATE TABLE `products` (
 
 /*Data for the table `products` */
 
-insert  into `products`(`productCode`,`productName`,`productLine`,`productScale`,`productVendor`,`productDescription`,`quantityInStock`,`buyPrice`,`MSRP`) values 
+insert  into `products`(`productCode`,`productName`,`productLine`,`productScale`,`productVendor`,`productDescription`,`quantityInStock`,`buyPrice`,`MSRP`) values
 
 ('S10_1678','1969 Harley Davidson Ultimate Chopper','Motorcycles','1:10','Min Lin Diecast','This replica features working kickstand, front suspension, gear-shift lever, footbrake lever, drive chain, wheels and steering. All parts are particularly delicate due to their precise scale and require special care and attention.',7933,'48.81','95.70'),
 

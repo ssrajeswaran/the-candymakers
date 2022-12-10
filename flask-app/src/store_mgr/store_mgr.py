@@ -5,6 +5,10 @@ from src import db
 # make a blueprint
 store_mgr = Blueprint('store_mgr', __name__)
 
+@store_mgr.route('/hi')
+def test():
+    return 'hello'
+
 @store_mgr.route('/restockinfo', methods=['GET'])
 def get_candies():
     # get a cursor object from the database
