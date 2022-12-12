@@ -25,8 +25,12 @@ def create_app():
     db.init_app(app)
 
     from src.store_mgr.store_mgr import store_mgr
+    from src.customers.customers import customers
+    from src.mktg_mgr.mktg_mgr import mktg_mgr
 
     app.register_blueprint(store_mgr, url_prefix='/storemgr')
+    app.register_blueprint(customers, url_prefix='/cust')
+    app.register_blueprint(mktg_mgr, url_prefix='/mktgmgr')
 
     #
     # # Import the various routes
