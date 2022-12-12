@@ -9,13 +9,25 @@ store_mgr = Blueprint('store_mgr', __name__)
 def test():
     return 'hello'
 
+# route that will allow store mgr to view important candy info
+# to help with deciding what to restock
 @store_mgr.route('/restockinfo', methods=['GET'])
-def get_candies():
+def get_restock_info():
     # get a cursor object from the database
     cursor = db.get_db().cursor()
 
-    # use cursor to query the database for a list of products
-    cursor.execute('select * from candies')
+    # grab candy, qty in stock, currently sold, and total sales
+    query = '''
+        SELECT c.candy_name AS Candy,
+               c.qty_in_stock AS QuantityInStock,
+               c.currently_sold AS CurrentlySold,
+               SUM(il.qty * c.unit_price) AS TotalSales
+        FROM candies c JOIN invoice_line il on c.candy_id = il.candy_id
+        GROUP BY Candy, QuantityInStock, CurrentlySold;
+    '''
+
+    # use cursor to query the database
+    cursor.execute(query)
 
     # grab the column headers from the returned data
     column_headers = [x[0] for x in cursor.description]
