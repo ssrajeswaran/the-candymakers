@@ -78,7 +78,6 @@ def post_shipper_form():
 
 
 # get route for store mgr to see how many invoices different shippers are handling
-# Note: this route was not used in the Appsmith wireframes.
 @store_mgr.route('/shipperinvoicecount')
 def get_shipper_invoice_count():
     cursor = db.get_db().cursor()
