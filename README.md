@@ -1,25 +1,35 @@
-# MySQL + Flask Boilerplate Project
+# Candyland: CS3200 Final Project
+### Made By: Shreya Rajeswaran (The Candymakers)
 
-This repo contains a boilerplate setup for spinning up 2 docker containers: 
-1. A MySQL 8 container for obvious reasons
-1. A Python Flask container to implement a REST API
+Database creation:
+- This project involved creating a database to support a fictional candy company called
+Candyland which wanted a better way to keep track of the candies it is selling, customers who order from it,
+invoices that are made, employees of the company, etc. This database was first designed with entity-relationship
+diagrams and then created using MySQL.
 
-## How to setup and start the containers
-**Important** - you need Docker Desktop installed
+Web development:
+- After the database was created, Python Flask was used as a tool to write routes for different user-personas
+to view or update different aspects of the data. 
+- Flask was then connected to Appsmith through a secure Ngrok connection. Appsmith allowed for the 
+creation of different user interfaces that could be linked back to the Flask routes to cleanly display get and post
+requests.
 
-1. Clone this repository.  
-1. Create a file named `db_root_password.txt` in the `secrets/` folder and put inside of it the root password for MySQL. 
-1. Create a file named `db_password.txt` in the `secrets/` folder and put inside of it the password you want to use for the `webapp` user. 
-1. In a terminal or command prompt, navigate to the folder with the `docker-compose.yml` file.  
-1. Build the images with `docker compose build`
-1. Start the containers with `docker compose up`.  To run in detached mode, run `docker compose up -d`. 
+Docker:
+- To facilitate the project, Docker was used to generate containers. This repo spins up 2 Docker containers: 
+  1. A MySQL 8 container
+  1. A Python Flask container to implement a REST API
 
-## For setting up a Conda Web-Dev environment:
+In order to create the REST API, the flask-app folder contains three different blueprints for different 
+user-personas to access different aspects of the database. Each blueprint includes get and post routes that
+are relevant for that specific user-persona. The personas include:
+1. **Customer**: a user who is interested in buying candies from Candyland and who wants to know 
+price, nutritional info, and ingredient list of different candies
+2. **Marketing manager**: a user who is involved in advertising and promoting Candyland, who needs to be able to
+insert information about a new ad that they have created
+3. **Store manager**: a user who is heavily involved in restocking candies in the company, managing invoices, and 
+keeping track of shippers who are sending invoices/orders to customers
 
-1. `conda create -n webdev python=3.9`
-1. `conda activate webdev`
-1. `pip install flask flask-mysql flask-restful cryptography flask-login`
-
-
+For a brief video overview of this project (including the user interface on Appsmith), visit:
+https://drive.google.com/file/d/155xowfbroNRg4D8jHUwp1jHRBZ-SBReS/view?usp=share_link
 
 

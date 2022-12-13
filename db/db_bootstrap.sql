@@ -1,23 +1,14 @@
--- This file is to bootstrap a database for the CS3200 project. 
-
--- Create a new database.  You can change the name later.  You'll
--- need this name in the FLASK API file(s),  the AppSmith 
--- data source creation.
+-- Create a new database
 create database candyland;
 
--- Via the Docker Compose file, a special user called webapp will 
--- be created in MySQL. We are going to grant that user 
--- all privilages to the new database we just created. 
--- TODO: If you changed the name of the database above, you need 
--- to change it here too.
+-- grant webapp user all privileges to db
 grant all privileges on candyland.* to 'webapp'@'%';
 flush privileges;
 
--- Move into the database we just created.
--- TODO: If you changed the name of the database above, you need to
--- change it here too. 
+-- Move into the db
 use candyland;
 
+-- create table statements
 
 CREATE TABLE manufacturers (
     manufacturer_id INT NOT NULL,
@@ -185,6 +176,7 @@ CREATE TABLE invoice_line (
 );
 
 
+-- insert data into the tables we created above:
 
 -- customers
 INSERT INTO customers (cust_id, first_name, last_name, phone, email, address) VALUES (89219, 'Britteny', 'Shemilt', '820-987-4026', 'bshemilt0@csmonitor.com', '601 Luster Place');
@@ -310,7 +302,7 @@ INSERT INTO shippers (shipper_id, name, address, email) VALUES (71, 'Fix San', '
 INSERT INTO shippers (shipper_id, name, address, email) VALUES (11, 'Viva', '924 Hayes Point', 'tcockingo@usatoday.com');
 INSERT INTO shippers (shipper_id, name, address, email) VALUES (37, 'Subin', '577 5th Plaza', 'gdrysdallp@oracle.com');
 INSERT INTO shippers (shipper_id, name, address, email) VALUES (63, 'Viva', '36 Center Junction', 'slavrickq@shinystat.com');
-INSERT INTO shippers (shipper_id, name, address, email) VALUES (13, 'Subin', '087 Transport Avenue', 'darchibaldr@economist.com');
+INSERT INTO shippers (shipper_id, name, address, email) VALUES (10, 'Subin', '087 Transport Avenue', 'darchibaldr@economist.com');
 INSERT INTO shippers (shipper_id, name, address, email) VALUES (41, 'Temp', '17 Scofield Point', 'dfortuns@youtu.be');
 INSERT INTO shippers (shipper_id, name, address, email) VALUES (81, 'Sonsing', '59541 Delladonna Center', 'ltonnert@istockphoto.com');
 

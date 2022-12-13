@@ -42,6 +42,26 @@ def get_restock_info():
 
     return jsonify(json_data)
 
+# get route for store mgr to see how many invoices different shippers are handling
+@store_mgr.route('/shipperinvoicecount')
+def get_shipper_invoice_count():
+    cursor = db.get_db().cursor()
+
+    query = '''
+        SELECT s.name AS Shipper, COUNT(*) AS NumInvoices
+        FROM shippers s JOIN invoices i on s.shipper_id = i.shipper_id
+        GROUP BY Shipper;
+    '''
+    cursor.execute(query)
+    column_headers = [x[0] for x in cursor.description]
+    json_data = []
+    theData = cursor.fetchall()
+
+    for row in theData:
+        json_data.append(dict(zip(column_headers, row)))
+
+    return jsonify(json_data)
+
 # When the store mgr partners with a new shipper, they need to add the shipper's info into the db
 # below is a route for an html form (127.0.0.1:8001/newshipperform)
 # note: this was not implemented in the Appsmith wireframes
@@ -77,24 +97,6 @@ def post_shipper_form():
     return f'Success! Your query was: {query}'
 
 
-# get route for store mgr to see how many invoices different shippers are handling
-@store_mgr.route('/shipperinvoicecount')
-def get_shipper_invoice_count():
-    cursor = db.get_db().cursor()
 
-    query = '''
-        SELECT s.name AS Shipper, COUNT(*) AS NumInvoices
-        FROM shippers s JOIN invoices i on s.shipper_id = i.shipper_id
-        GROUP BY Shipper;
-    '''
-    cursor.execute(query)
-    column_headers = [x[0] for x in cursor.description]
-    json_data = []
-    theData = cursor.fetchall()
-
-    for row in theData:
-        json_data.append(dict(zip(column_headers, row)))
-
-    return jsonify(json_data)
 
 
