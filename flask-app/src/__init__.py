@@ -1,4 +1,4 @@
-# Some set up for the application 
+# Some set up for the application
 
 from flask import Flask
 from flaskext.mysql import MySQL
@@ -14,7 +14,7 @@ def create_app():
     # extensions or your application
     app.config['SECRET_KEY'] = 'someCrazyS3cR3T!Key.!'
 
-    # these are for the DB object to be able to connect to MySQL. 
+    # allow DB object to be able to connect to MySQL.
     app.config['MYSQL_DATABASE_USER'] = 'webapp'
     app.config['MYSQL_DATABASE_PASSWORD'] = open('/secrets/db_password.txt').readline()
     app.config['MYSQL_DATABASE_HOST'] = 'db'
@@ -24,24 +24,15 @@ def create_app():
     # Initialize the database object with the settings above. 
     db.init_app(app)
 
+    # import routes
     from src.store_mgr.store_mgr import store_mgr
     from src.customers.customers import customers
     from src.mktg_mgr.mktg_mgr import mktg_mgr
 
+    # register routes we just imported
     app.register_blueprint(store_mgr, url_prefix='/storemgr')
     app.register_blueprint(customers, url_prefix='/cust')
     app.register_blueprint(mktg_mgr, url_prefix='/mktgmgr')
-
-    #
-    # # Import the various routes
-    # from src.views import views
-    # from src.customers.customers import customers
-    # from src.products.products  import products
-    #
-    # # Register the routes that we just imported so they can be properly handled
-    # app.register_blueprint(views,       url_prefix='/classic')
-    # app.register_blueprint(customers,   url_prefix='/classic')
-    # app.register_blueprint(products,    url_prefix='/classic')
 
 
     return app
